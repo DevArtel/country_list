@@ -42,7 +42,13 @@ class _MyAppState extends State<MyApp> {
                   final countries = _showNativeNames ? CountryListManager.getCountries() : CountryListManager.getLocalizedCountries(context);
                   return ListView.builder(
                     itemCount: countries.length,
-                    itemBuilder: (context, index) => Text(countries[index].name),
+                    itemBuilder: (context, index) => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(countries[index].name),
+                        Text(countries[index].phonePrefix),
+                      ],
+                    ),
                   );
                 },
               ),
