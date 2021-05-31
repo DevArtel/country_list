@@ -1,6 +1,6 @@
 name: country_list
-description: Pure dart package for receiving list of countries with codes and phone codes
-version: 1.0.0
+description: Flutter package for receiving list of countries with codes and phone codes
+version: 0.0.1
 homepage: https://github.com/DevArtel/country_list
 
 environment:
@@ -10,10 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  modal_bottom_sheet: ^2.0.0
   collection: ^1.15.0
 
 flutter:
   assets:
-    - flags/
     - assets/i18n/
