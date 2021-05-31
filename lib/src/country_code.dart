@@ -1,7 +1,3 @@
-import 'package:collection/collection.dart' show IterableExtension;
-
-import 'data/country_codes.dart';
-
 class CountryCode {
   /// Country name
   final String name;
@@ -17,25 +13,6 @@ class CountryCode {
     required this.code,
     required this.phonePrefix,
   });
-
-  static CountryCode? fromCountryCode(String countryCode) {
-    final jsonCode = codes.firstWhereOrNull((code) => code['code'] == countryCode);
-
-    if (jsonCode == null) {
-      return null;
-    }
-    return CountryCode.fromJson(jsonCode);
-  }
-
-  static CountryCode? fromDialCode(String phonePrefix) {
-    final jsonCode = codes.firstWhereOrNull((code) => code['dial_code'] == phonePrefix);
-
-    if (jsonCode == null) {
-      return null;
-    }
-
-    return CountryCode.fromJson(jsonCode);
-  }
 
   factory CountryCode.fromJson(Map<String, dynamic> json) {
     return CountryCode(

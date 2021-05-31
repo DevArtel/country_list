@@ -7,6 +7,10 @@ import 'package:flutter/services.dart';
 class CountryListLocalizations {
   final Locale locale;
 
+  static const LocalizationsDelegate<CountryListLocalizations> delegate = _CountryLocalizationsDelegate();
+
+  late Map<String, String> _localizedStrings;
+
   CountryListLocalizations(this.locale);
 
   static CountryListLocalizations of(BuildContext context) {
@@ -22,10 +26,6 @@ class CountryListLocalizations {
       CountryListLocalizations,
     );
   }
-
-  static const LocalizationsDelegate<CountryListLocalizations> delegate = _CountryLocalizationsDelegate();
-
-  late Map<String, String> _localizedStrings;
 
   Future<void> load() async {
     final jsonString = await rootBundle.loadString('packages/country_list/assets/i18n/${locale.languageCode}.json');
