@@ -1,4 +1,4 @@
-import 'package:country_code_picker/country_code.dart';
+import 'package:country_list/country_code.dart';
 import 'package:flutter/material.dart';
 
 /// selection dialog used for selection of the country code
