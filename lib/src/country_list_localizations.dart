@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:country_list/country_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,7 +9,14 @@ class CountryListLocalizations {
 
   CountryListLocalizations(this.locale);
 
-  static CountryListLocalizations? of(BuildContext context) {
+  static CountryListLocalizations of(BuildContext context) {
+    return Localizations.of<CountryListLocalizations>(
+      context,
+      CountryListLocalizations,
+    )!;
+  }
+
+  static CountryListLocalizations? maybeOf(BuildContext context) {
     return Localizations.of<CountryListLocalizations>(
       context,
       CountryListLocalizations,
@@ -20,14 +28,23 @@ class CountryListLocalizations {
   late Map<String, String> _localizedStrings;
 
   Future<void> load() async {
-    String jsonString = await rootBundle.loadString('packages/country_list/assets/i18n/${locale.languageCode}.json');
-    Map<String, dynamic> jsonMap = json.decode(jsonString);
+    final jsonString = await rootBundle.loadString('packages/country_list/assets/i18n/${locale.languageCode}.json');
+    final jsonMap = json.decode(jsonString) as Map<String, dynamic>;
 
-    _localizedStrings = jsonMap.map((key, value) => MapEntry(key, value.toString()));
+    _localizedStrings = jsonMap.map((key, dynamic value) {
+      final name = value is List ? value.first.toString() : value.toString();
+      return MapEntry(key, name);
+    });
   }
 
-  String? translate(String key) {
-    return _localizedStrings[key];
+  CountryCode localize(CountryCode model) {
+    final localizedName = _localizedStrings[model.code];
+
+    return CountryCode(
+      name: localizedName ?? model.name,
+      code: model.code,
+      phonePrefix: model.phonePrefix,
+    );
   }
 }
 
@@ -112,7 +129,7 @@ class _CountryLocalizationsDelegate extends LocalizationsDelegate<CountryListLoc
 
   @override
   Future<CountryListLocalizations> load(Locale locale) async {
-    CountryListLocalizations localizations = new CountryListLocalizations(locale);
+    final localizations = CountryListLocalizations(locale);
     await localizations.load();
     return localizations;
   }
