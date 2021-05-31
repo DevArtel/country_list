@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
             Expanded(
               child: Builder(
                 builder: (context) {
-                  final countries = _showNativeNames ? CountryListManager.getCountries() : CountryListManager.getLocalizedCountries(context);
+                  final countries = _showNativeNames ? CountryListManager().getCountries() : CountryListManager().getLocalizedCountries(context);
                   return ListView.builder(
                     itemCount: countries.length,
                     itemBuilder: (context, index) => Row(

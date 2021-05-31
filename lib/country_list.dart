@@ -17,7 +17,7 @@ class CountryListManager {
 
   CountryListManager._internal();
 
-  static List<CountryCode> getLocalizedCountries(BuildContext context) {
+  List<CountryCode> getLocalizedCountries(BuildContext context) {
     final localizations = CountryListLocalizations.of(context);
 
     return codes.map((json) {
@@ -26,11 +26,11 @@ class CountryListManager {
     }).toList();
   }
 
-  static List<CountryCode> getCountries() {
+  List<CountryCode> getCountries() {
     return codes.map((json) => CountryCode.fromJson(json)).toList();
   }
 
-  static CountryCode? getCountryFromCode(String countryCode) {
+  CountryCode? getCountryFromCode(String countryCode) {
     final jsonCode = codes.firstWhereOrNull((code) => code['code'] == countryCode);
 
     if (jsonCode == null) {
