@@ -14,6 +14,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale = const Locale('en');
 
+  bool _showNativeNames = false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,7 +39,7 @@ class _MyAppState extends State<MyApp> {
             Expanded(
               child: Builder(
                 builder: (context) {
-                  final countries = CountryList().getCountries(context);
+                  final countries = _showNativeNames ? CountryListManager.getCountries() : CountryListManager.getLocalizedCountries(context);
                   return ListView.builder(
                     itemCount: countries.length,
                     itemBuilder: (context, index) => Text(countries[index].name),
@@ -49,16 +51,29 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () => setState(() => _locale = const Locale('ru')),
+                  onPressed: () => setState(() {
+                    _locale = const Locale('ru');
+                    _showNativeNames = false;
+                  }),
                   child: const Text('ru'),
                 ),
                 ElevatedButton(
-                  onPressed: () => setState(() => _locale = const Locale('en')),
+                  onPressed: () => setState(() {
+                    _locale = const Locale('en');
+                    _showNativeNames = false;
+                  }),
                   child: const Text('en'),
                 ),
                 ElevatedButton(
-                  onPressed: () => setState(() => _locale = const Locale('ja')),
+                  onPressed: () => setState(() {
+                    _locale = const Locale('ja');
+                    _showNativeNames = false;
+                  }),
                   child: const Text('ja'),
+                ),
+                ElevatedButton(
+                  onPressed: () => setState(() => _showNativeNames = true),
+                  child: const Text('native'),
                 ),
               ],
             )
