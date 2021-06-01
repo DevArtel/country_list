@@ -1,3 +1,7 @@
+## 0.0.5
+
+* Add Netherlands antilles to russian localization
+
 ## 0.0.4
 
 * Add `localeCode` property to CountryCode
