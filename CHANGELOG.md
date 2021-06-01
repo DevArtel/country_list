@@ -1,3 +1,7 @@
+## 0.0.4
+
+* Add `localeCode` property to CountryCode
+
 ## 0.0.3
 
 * Fix singleton static methods issue

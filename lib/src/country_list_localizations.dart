@@ -44,6 +44,7 @@ class CountryListLocalizations {
       name: localizedName ?? model.name,
       code: model.code,
       phonePrefix: model.phonePrefix,
+      localeCode: locale.languageCode,
     );
   }
 }

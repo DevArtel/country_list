@@ -8,10 +8,14 @@ class CountryCode {
   /// the dial code (+39,+93..)
   final String phonePrefix;
 
+  /// Locale of current model name localization
+  final String? localeCode;
+
   CountryCode({
     required this.name,
     required this.code,
     required this.phonePrefix,
+    this.localeCode,
   });
 
   factory CountryCode.fromJson(Map<String, dynamic> json) {
